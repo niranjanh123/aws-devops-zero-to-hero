@@ -1,8 +1,6 @@
 #!/bin/bash
 set -e
 
-# Stop the running container (if any)
-echo "Hi"
-containerid = `docker ps | awk -F " "'{print $1}'`
-echo $containerid
-docker rm -f $containerid
+# Stop and remove all the running containers (if any)
+docker stop $(docker ps -a -q)
+docker rm $(docker ps -a -q)
